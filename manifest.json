@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT Conversation Copier",
+  "version": "1.0.0",
+  "description": "Click the icon on an open ChatGPT conversation to copy the entire chat (including long, virtualized conversations) to your clipboard as Markdown. User prompts are prefixed with +++.",
+  "permissions": ["activeTab", "scripting", "clipboardWrite", "storage"],
+  "host_permissions": ["https://chatgpt.com/*"],
+  "action": {
+    "default_title": "Copy ChatGPT conversation to clipboard (right-click for settings)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
